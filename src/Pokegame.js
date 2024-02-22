@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Pokecard from './Pokecard';
 import Pokedex from './Pokedex';
 
 class Pokegame extends Component {
@@ -23,21 +22,23 @@ class Pokegame extends Component {
         while(hand1.length < hand2.length) {
             let randIdx = Math.floor(Math.random() * hand2.length);
             let randPokemon = hand2.splice(randIdx, 1)[0];
-            hand1.push(randPokemon);
-            console.log(hand1);
-            console.log(hand2);
+            hand1.push(randPokemon);            
         }
 
 
         let exp1 = hand1.reduce((exp, pokemon) => exp + pokemon.base_experience, 0); 
         let exp2 = hand2.reduce((exp, pokemon) => exp + pokemon.base_experience, 0);
 
-        return(
+        return (
             <div>
-                <Pokedex pokemon={hand1} exp={exp1} isWinner={exp1 > exp2}/>
-                <Pokedex pokemon={hand2} exp={exp2} isWinner={exp2 > exp1}/>
+                <div style={{textAlign: 'center'}}>
+                    <h1 >Pokemon Game API!</h1>
+                    <button onClick={() => window.location.reload()} style={{padding:'5px 10px', border: '2px solid #43658B', fontWeight: 400, color:'#43658B', background:'transparent', cursor: 'pointer'}}>Play Again</button>
+                </div>              
+              <Pokedex pokemon={hand1} exp={exp1} isWinner={exp1 > exp2} />
+              <Pokedex pokemon={hand2} exp={exp2} isWinner={exp2 > exp1} />
             </div>
-        )
+          );          
     }
 }
 
